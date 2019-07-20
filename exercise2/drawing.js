@@ -51,9 +51,31 @@ function draw_line(ctx) {
   ctx.lineTo(150, 250);
   ctx.lineTo(250, 170);
   ctx.lineTo(320, 280);
+  // This will add a line from the current path position to the most recent open end.
+  ctx.closePath();
   ctx.stroke();
   ctx.fillText('(50,50)', 30, 40);
   ctx.fillText('(150, 250)', 130, 260);
   ctx.fillText('(250, 170)', 255, 175);
+  ctx.fillText('(320, 280)', 325, 285);
+}
+
+function draw_shapes(ctx) {
+  ctx.beginPath();
+  ctx.moveTo(50, 250);
+  ctx.lineTo(50, 350);
+  ctx.lineTo(150, 350);
+  ctx.closePath();
+  ctx.moveTo(230, 360);
+  ctx.lineTo(270, 360);
+  ctx.lineTo(270, 310);
+  ctx.closePath();
+  ctx.moveTo(250, 50);
+  ctx.lineTo(370, 50);
+  ctx.lineTo(370, 100);
+  ctx.closePath();
+  ctx.strokeStyle = '#FFFF00';
+  ctx.fillStyle = '#000000';
   ctx.fill();
+  ctx.stroke();
 }
