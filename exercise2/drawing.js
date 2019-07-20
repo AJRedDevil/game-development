@@ -41,3 +41,19 @@ function draw_grid({
   // of the canvas context.
   ctx.restore();
 }
+
+function draw_line(ctx) {
+  ctx.beginPath();
+  ctx.strokeStyle = '#FFF';
+  ctx.fillStyle = '#00FF00';
+  ctx.lineWidth = 2;
+  ctx.moveTo(50, 50);
+  ctx.lineTo(150, 250);
+  ctx.lineTo(250, 170);
+  ctx.lineTo(320, 280);
+  ctx.stroke();
+  ctx.fillText('(50,50)', 30, 40);
+  ctx.fillText('(150, 250)', 130, 260);
+  ctx.fillText('(250, 170)', 255, 175);
+  ctx.fill();
+}

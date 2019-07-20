@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>More drawing to canvas</title>
+	<link rel="stylesheet" href="./styles.css">
+	<script src="./drawing.js"></script>
+</head>
+
+<body>
+	<h1>More drawing to canvas</h1>
+	<canvas id="asteroids" width="400" height="400"></canvas>
+	<script>
+		const canvas = document.getElementById('asteroids');
+		const context = canvas.getContext('2d');
+		context.fillStyle = 'black';
+		context.fillRect(0, 0, 400, 400);
+		options = {
+			ctx: context,
+			minor: 10,
+		}
+		draw_grid(options);
+		draw_line(context);
+	</script>
+</body>
+
+</html>
