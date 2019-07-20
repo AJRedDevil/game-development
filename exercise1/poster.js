@@ -27,3 +27,7 @@ context.fill();
 // tells the context to draw the stored path using the current values
 // of the context properties (lineWidth and strokeStyle).
 context.stroke();
+
+context.font = '34px Arial';
+context.fillStyle = 'lightgrey';
+context.fillText('2D drawing', 110, 100);
