@@ -31,7 +31,6 @@ context.stroke();
 context.font = '34px Arial';
 // context.fillStyle = 'lightgrey';
 // context.fillText('2D drawing', 110, 100);
-
 context.strokeStyle = '#FF2222';
 context.fillStyle = '#FFAAAA';
 context.lineWidth = 0.75;
@@ -43,7 +42,13 @@ const msg = '2D Drawing';
 context.fillText(msg, canvas.width / 2, 100);
 context.strokeText(msg, canvas.width / 2, 100);
 
-// Stick Figure
+// ********** Motivational Message **********
+const msg2 = 'its quite easy';
+context.font = '24px Arial';
+context.fillText(msg2, canvas.width / 2, 330);
+context.strokeText(msg2, canvas.width / 2, 330);
+
+// *********** Stick Figure ***********
 context.strokeStyle = '#FFF';
 context.lineWidth = 2;
 // The context.beginPath method begins a new path or resets the current path.
