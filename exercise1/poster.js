@@ -16,7 +16,7 @@ context.fillStyle = 'dimgrey';
 // here we set it to five pixels wide.
 // When we set properties of the canvas context,
 // they remain in force until we change them.
-context.lineWidh = 5;
+context.lineWidth = 5;
 // specifies a rectangle using the context.rect method.
 // (x,y) pixel coordinates of the origin of the rectangle
 // The pixel width and height of the rectangle are specified in the last two arguments
@@ -34,7 +34,7 @@ context.font = '34px Arial';
 
 context.strokeStyle = '#FF2222';
 context.fillStyle = '#FFAAAA';
-context.lineWidh = 0.75;
+context.lineWidth = 0.75;
 // This tells the context to use the central point in the text as the “anchor.”
 // So, when we actually render the text, the central point in the
 // text is positioned at the x-coordinate we provide rather than the default leftmost point.
@@ -42,3 +42,34 @@ context.textAlign = 'center';
 const msg = '2D Drawing';
 context.fillText(msg, canvas.width / 2, 100);
 context.strokeText(msg, canvas.width / 2, 100);
+
+// Stick Figure
+context.strokeStyle = '#FFF';
+context.lineWidth = 2;
+// The context.beginPath method begins a new path or resets the current path.
+// We need to call this because we already had an active path left over
+// from when we drew the original rectangle.
+context.beginPath();
+// This method can be used to draw any circle or portion of a circle.
+// The method takes five arguments, as follows:
+// the first pair of arguments includes the(x, y) coordinates(in pixels) of the center of the circle.
+// The third argument is the radius of the circle, and
+// the fourth and fifth arguments are the starting angle and
+// finishing angle of the arc(measured in radians).
+// To draw a full circle, these angles should be 0 and 2π.
+context.arc(200, 140, 20, 0, Math.PI * 2);
+// To move the “pen” to a location without drawing a line, call context.moveTo.
+context.moveTo(200, 160);
+// To draw a line from the current location to the given location, call context.lineTo.
+context.lineTo(200, 220);
+context.moveTo(180, 300);
+context.lineTo(185, 260);
+context.lineTo(200, 220);
+context.lineTo(215, 260);
+context.lineTo(220, 300);
+context.moveTo(240, 130);
+context.lineTo(225, 170);
+context.lineTo(200, 170);
+context.lineTo(175, 180);
+context.lineTo(170, 220);
+context.stroke();
