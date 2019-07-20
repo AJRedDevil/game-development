@@ -29,5 +29,16 @@ context.fill();
 context.stroke();
 
 context.font = '34px Arial';
-context.fillStyle = 'lightgrey';
-context.fillText('2D drawing', 110, 100);
+// context.fillStyle = 'lightgrey';
+// context.fillText('2D drawing', 110, 100);
+
+context.strokeStyle = '#FF2222';
+context.fillStyle = '#FFAAAA';
+context.lineWidh = 0.75;
+// This tells the context to use the central point in the text as the “anchor.”
+// So, when we actually render the text, the central point in the
+// text is positioned at the x-coordinate we provide rather than the default leftmost point.
+context.textAlign = 'center';
+const msg = '2D Drawing';
+context.fillText(msg, canvas.width / 2, 100);
+context.strokeText(msg, canvas.width / 2, 100);
