@@ -83,6 +83,8 @@ function draw_shapes(ctx) {
 function draw_curves(ctx) {
   ctx.beginPath();
   ctx.moveTo(50, 250);
+  // requires the coordinates of a control point as well as of the end point.
+  // The line will curve towards the control point.
   ctx.quadraticCurveTo(25, 300, 50, 350);
   ctx.quadraticCurveTo(100, 375, 150, 350);
   ctx.closePath();
@@ -98,4 +100,25 @@ function draw_curves(ctx) {
   ctx.fillStyle = '#000000';
   ctx.fill();
   ctx.stroke();
+}
+
+function draw_bezier_curve(ctx) {
+  ctx.beginPath();
+  ctx.strokeStyle = '#FFF';
+  ctx.fillStyle = '#00FF00';
+  ctx.lineWidth = 2;
+  ctx.moveTo(50, 50);
+  // Bezier curves take the coordinates of two control points plus the end point.
+  // The resultant path is a curve which passes through each of the specified end points.
+  // Bezier curves allow for smooth twisting and turning with relatively simple paths.
+  ctx.bezierCurveTo(0, 0, 80, 250, 150, 250);
+  ctx.bezierCurveTo(250, 250, 250, 250, 250, 170);
+  ctx.bezierCurveTo(250, 50, 400, 350, 320, 280);
+  // This will add a line from the current path position to the most recent open end.
+  ctx.closePath();
+  ctx.stroke();
+  ctx.fillText('(50,50)', 30, 40);
+  ctx.fillText('(150, 250)', 130, 260);
+  ctx.fillText('(250, 170)', 255, 175);
+  ctx.fillText('(320, 280)', 325, 285);
 }
