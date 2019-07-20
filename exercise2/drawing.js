@@ -79,3 +79,23 @@ function draw_shapes(ctx) {
   ctx.fill();
   ctx.stroke();
 }
+
+function draw_curves(ctx) {
+  ctx.beginPath();
+  ctx.moveTo(50, 250);
+  ctx.quadraticCurveTo(25, 300, 50, 350);
+  ctx.quadraticCurveTo(100, 375, 150, 350);
+  ctx.closePath();
+  ctx.moveTo(230, 360);
+  ctx.quadraticCurveTo(255, 340, 270, 360);
+  ctx.quadraticCurveTo(255, 340, 270, 310);
+  ctx.closePath();
+  ctx.moveTo(250, 50);
+  ctx.quadraticCurveTo(310, 60, 370, 50);
+  ctx.quadraticCurveTo(400, 75, 370, 100);
+  ctx.closePath();
+  ctx.strokeStyle = '#FFFF00';
+  ctx.fillStyle = '#000000';
+  ctx.fill();
+  ctx.stroke();
+}
