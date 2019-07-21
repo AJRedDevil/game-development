@@ -47,6 +47,7 @@ function draw_pacman({ctx, x, y, radius, mouth}) {
   ctx.save();
   ctx.fillStyle = 'yellow';
   ctx.strokeStyle = 'black';
+  ctx.lineWidth = 0.5;
   ctx.beginPath();
   ctx.arc(x, y, radius, angle, -angle);
   ctx.lineTo(x, y);
