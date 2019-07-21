@@ -50,7 +50,8 @@ function draw_ship_at_origin(
     lineWidth: 2,
     stroke: 'white',
     fill: 'black',
-    curve: 0.5,
+    curve1: 0.25,
+    curve2: 0.75,
   }
 ) {
   ctx.save();
@@ -69,30 +70,60 @@ function draw_ship_at_origin(
   let angle = (options.angle || 0.5 * Math.PI) / 2;
   ctx.beginPath();
   ctx.moveTo(radius, 0);
-  ctx.lineTo(
+  // here we have three curves
+  ctx.quadraticCurveTo(
+    Math.cos(angle) * radius * options.curve2,
+    Math.sin(angle) * radius * options.curve2,
     Math.cos(Math.PI - angle) * radius,
     Math.sin(Math.PI - angle) * radius
   );
   ctx.quadraticCurveTo(
-    radius * options.curve - radius,
+    -radius * options.curve1,
     0,
     Math.cos(Math.PI + angle) * radius,
     Math.sin(Math.PI + angle) * radius
   );
-  ctx.closePath();
+  ctx.quadraticCurveTo(
+    Math.cos(-angle) * radius * options.curve2,
+    Math.sin(-angle) * radius * options.curve2,
+    radius,
+    0
+  );
   ctx.fill();
   ctx.stroke();
-  // a new guide line and circle show the control point
+  // the guide drawing code is getting complicated
   if (options.guide) {
     ctx.strokeStyle = 'white';
+    ctx.fillStyle = 'white';
     ctx.lineWidth = 0.5;
     ctx.beginPath();
+    ctx.moveTo(Math.cos(-angle) * radius, Math.sin(-angle) * radius);
+    ctx.lineTo(0, 0);
+    ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
     ctx.moveTo(-radius, 0);
     ctx.lineTo(0, 0);
     ctx.stroke();
     ctx.beginPath();
-    ctx.arc(radius * options.curve - radius, 0, radius / 50, 0, 2 * Math.PI);
-    ctx.stroke();
+    ctx.arc(
+      Math.cos(angle) * radius * options.curve2,
+      Math.sin(angle) * radius * options.curve2,
+      radius / 40,
+      0,
+      2 * Math.PI
+    );
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(
+      Math.cos(-angle) * radius * options.curve2,
+      Math.sin(-angle) * radius * options.curve2,
+      radius / 40,
+      0,
+      2 * Math.PI
+    );
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(radius * options.curve1 - radius, 0, radius / 50, 0, 2 * Math.PI);
+    ctx.fill();
   }
   ctx.restore();
 }
