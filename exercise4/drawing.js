@@ -57,8 +57,8 @@ function draw_ship({ctx, x, y, radius, options = {}}) {
 
   // set some default values;
   ctx.lineWidth = options.lineWidth || 2;
-  ctx.strokeStyle = options.strokeStyle || 'white';
-  ctx.fillStyle = options.fillStyle || 'black';
+  ctx.strokeStyle = options.stroke || 'white';
+  ctx.fillStyle = options.fill || 'black';
   let angle = (options.angle || 0.5 * Math.PI) / 2;
   // draw the ship in three lines
   ctx.beginPath();
