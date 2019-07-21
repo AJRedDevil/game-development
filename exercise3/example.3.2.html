@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Pacmania</title>
+	<link rel="stylesheet" href="./styles.css">
+	<script src="./drawing.js"></script>
+</head>
+
+<body>
+	<h1>Pac-man</h1>
+	<canvas id="pacmania" width="400" height="400"></canvas>
+	<script>
+		const context = document.getElementById("pacmania").getContext("2d");
+		draw_grid({ ctx: context, minor: 10 });
+		draw_pacman({ ctx: context, x: 200, y: 200, radius: 150, mouth: Math.random() })
+	</script>
+</body>
+
+</html>

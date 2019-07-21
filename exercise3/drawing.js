@@ -41,3 +41,17 @@ function draw_grid({
   // of the canvas context.
   ctx.restore();
 }
+
+function draw_pacman({ctx, x, y, radius, mouth}) {
+  const angle = 0.2 * Math.PI * mouth;
+  ctx.save();
+  ctx.fillStyle = 'yellow';
+  ctx.strokeStyle = 'black';
+  ctx.beginPath();
+  ctx.arc(x, y, radius, angle, -angle);
+  ctx.lineTo(x, y);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  ctx.restore();
+}
