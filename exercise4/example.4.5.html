@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Drawing a Spaceship</title>
+	<link rel="stylesheet" href="./styles.css">
+	<script src="./drawing.js"></script>
+</head>
+
+<body>
+	<h1>Drawing a Spaceship</h1>
+	<canvas id="asteroids" width="400" height="400"></canvas>
+	<script>
+		const context = document.getElementById("asteroids").getContext("2d");
+		draw_grid({ ctx: context });
+		let x, y, angle = 0;
+		const w = context.canvas.width;
+		const h = context.canvas.height;
+		let t = context.canvas.width / 20;
+		for (y = h / 20; y < h; y += h / 10) {
+			for (x = w / 20; x < w; x += w / 10) {
+				context.save();
+				context.translate(x, y);
+				context.rotate(angle);
+				draw_ship_at_origin(context, w / 30, { guide: true, lineWidth: 1 });
+				context.restore();
+				angle = (angle + 0.0075 * Math.PI);
+			}
+		}
+	</script>
+</body>
+
+</html>
