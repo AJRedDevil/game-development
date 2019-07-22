@@ -66,6 +66,13 @@ function draw_asteroid(ctx, radius, segments, options = {}) {
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2 * Math.PI);
     ctx.stroke();
+    ctx.beginPath();
+    ctx.lineWidth = 0.2;
+    ctx.arc(0, 0, radius + radius * noise, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(0, 0, radius - radius * noise, 0, 2 * Math.PI);
+    ctx.stroke();
   }
   ctx.restore();
 }
