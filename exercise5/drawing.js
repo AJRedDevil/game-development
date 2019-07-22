@@ -42,21 +42,14 @@ function draw_grid({
   ctx.restore();
 }
 
-function draw_asteroid(ctx, radius, segments, options = {}) {
+function draw_asteroid(ctx, radius, shape, options = {}) {
   ctx.strokeStyle = options.stroke || 'white';
   ctx.fillStyle = options.fill || 'black';
   ctx.save();
   ctx.beginPath();
-  for (let i = 0; i < segments; i++) {
-    ctx.rotate((2 * Math.PI) / segments);
-    // A simplistic approach - we don't want totally random
-    // ctx.lineTo(radius * Math.random(), 0);
-
-    // This is much better, only a bit random
-    // ctx.lineTo(radius * 0.8 + radius * 0.4 * Math.random(), 0);
-
-    // This is neat, configurable and keeps the radius about right
-    ctx.lineTo(radius + radius * options.noise * (Math.random() - 0.5), 0);
+  for (let i = 0; i < shape.length; i++) {
+    ctx.rotate((2 * Math.PI) / shape.length);
+    ctx.lineTo(radius + radius * options.noise * shape[i], 0);
   }
   ctx.closePath();
   ctx.fill();
