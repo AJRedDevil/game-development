@@ -34,3 +34,18 @@ function draw_grid({
   }
   ctx.restore();
 }
+
+function draw_pacman(ctx, radius, mouth) {
+  const angle = 0.2 * Math.PI * mouth;
+  ctx.save();
+  ctx.fillStyle = 'yellow';
+  ctx.strokeStyle = 'black';
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.arc(0, 0, radius, angle, -angle);
+  ctx.lineTo(0, 0);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  ctx.restore();
+}
