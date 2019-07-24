@@ -12,3 +12,21 @@ function Asteroid(segments, radius, noise) {
     this.shape.push(Math.random() - 0.5);
   }
 }
+
+Asteroid.prototype.update = function(elapsed) {
+  if (this.x - this.radius + elapsed * this.x_speed > context.canvas.width) {
+    this.x = -this.radius;
+  }
+  if (this.x + this.radius + elapsed * this.x_speed < 0) {
+    this.x = context.canvas.width + this.radius;
+  }
+  if (this.y - this.radius + elapsed * this.y_speed > context.canvas.height) {
+    this.y = -this.radius;
+  }
+  if (this.y + this.radius + elapsed * this.y_speed < 0) {
+    this.y = context.canvas.height + this.radius;
+  }
+  this.x += elapsed * this.x_speed;
+  this.y += elapsed * this.y_speed;
+  this.angle = (this.angle + elapsed * this.rotation_speed) % (2 * Math.PI);
+};
