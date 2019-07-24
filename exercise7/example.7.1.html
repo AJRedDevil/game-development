@@ -20,14 +20,7 @@
 			if (guide) {
 				draw_grid({ ctx });
 			}
-			ctx.save();
-			ctx.translate(asteroid.x, asteroid.y);
-			ctx.rotate(asteroid.angle);
-			draw_asteroid(ctx, asteroid.radius, asteroid.shape, {
-				noise: asteroid.noise,
-				guide: guide
-			});
-			ctx.restore();
+			asteroid.draw(ctx, guide);
 		}
 
 		function update(elapsed) {

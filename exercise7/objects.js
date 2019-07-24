@@ -30,3 +30,14 @@ Asteroid.prototype.update = function(elapsed) {
   this.y += elapsed * this.y_speed;
   this.angle = (this.angle + elapsed * this.rotation_speed) % (2 * Math.PI);
 };
+
+Asteroid.prototype.draw = function(ctx, guide) {
+  ctx.save();
+  ctx.translate(this.x, this.y);
+  ctx.rotate(this.angle);
+  draw_asteroid(ctx, this.radius, this.shape, {
+    noise: this.noise,
+    guide: guide,
+  });
+  ctx.restore();
+};
