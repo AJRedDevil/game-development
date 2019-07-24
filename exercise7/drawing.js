@@ -54,10 +54,10 @@ function draw_asteroid(ctx, radius, shape, options = {}) {
     ctx.stroke();
     ctx.beginPath();
     ctx.lineWidth = 0.2;
-    ctx.arc(0, 0, radius + radius * noise, 0, 2 * Math.PI);
+    ctx.arc(0, 0, radius + radius * options.noise, 0, 2 * Math.PI);
     ctx.stroke();
     ctx.beginPath();
-    ctx.arc(0, 0, radius - radius * noise, 0, 2 * Math.PI);
+    ctx.arc(0, 0, radius - radius * options.noise, 0, 2 * Math.PI);
     ctx.stroke();
   }
   ctx.restore();
