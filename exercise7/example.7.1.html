@@ -13,7 +13,7 @@
 	<script>
 		const context = document.getElementById("asteroids").getContext("2d");
 
-		let asteroid = {
+		const asteroid = {
 			segments: 24,
 			shape: [],
 			radius: 50,
@@ -24,6 +24,9 @@
 			y_speed: context.canvas.height * (Math.random() - 0.5),
 			rotation_speed: 2 * Math.PI * (Math.random() - 0.5)
 		};
+		for (let i = 0; i < asteroid.segments; i++) {
+			asteroid.shape.push(Math.random() - 0.5);
+		}
 		// asteroid shape
 		const segments = 24;
 		const shape = [];
