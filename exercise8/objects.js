@@ -10,7 +10,7 @@ function Pacman(x, y, radius, speed) {
   this.mouth = 0;
 }
 
-Pacman.speed.draw = function(ctx) {
+Pacman.prototype.draw = function(ctx) {
   ctx.save();
   ctx.translate(this.x, this.y);
   ctx.rotate(this.angle);
@@ -34,4 +34,12 @@ Pacman.prototype.turn = function(direction) {
     this.x_speed = 0;
     this.angle = this.y_speed > 0 ? 0.5 * Math.PI : 1.5 * Math.PI;
   }
+};
+
+Pacman.prototype.turn_left = function() {
+  this.turn(-1);
+};
+
+Pacman.prototype.turn_right = function() {
+  this.turn(1);
 };
