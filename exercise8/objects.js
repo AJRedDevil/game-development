@@ -15,7 +15,7 @@ Pacman.prototype.draw = function(ctx) {
   ctx.translate(this.x, this.y);
   ctx.rotate(this.angle);
   draw_pacman(ctx, this.radius, this.mouth);
-  ctx.restor();
+  ctx.restore();
 };
 
 Pacman.prototype.turn = function(direction) {
