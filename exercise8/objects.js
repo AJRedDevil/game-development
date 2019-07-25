@@ -9,3 +9,11 @@ function Pacman(x, y, radius, speed) {
   this.time = 0;
   this.mouth = 0;
 }
+
+Pacman.speed.draw = function(ctx) {
+  ctx.save();
+  ctx.translate(this.x, this.y);
+  ctx.rotate(this.angle);
+  draw_pacman(ctx, this.radius, this.mouth);
+  ctx.restor();
+};
