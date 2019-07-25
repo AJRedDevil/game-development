@@ -88,3 +88,11 @@ Ghost.prototype.draw = function(ctx) {
   });
   ctx.restore();
 };
+
+Ghost.prototype.update = function(target, elapsed) {
+  const angle = Math.atan2(target.y - this.y, target.x - this.x);
+  const x_speed = Math.cos(angle) * this.speed;
+  const y_speed = Math.sin(angle) * this.speed;
+  this.x = x_speed * elapsed;
+  this.y = y_speed * elapsed;
+};
