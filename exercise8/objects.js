@@ -79,3 +79,12 @@ function Ghost(x, y, radius, speed, color) {
   this.speed = speed;
   this.color = color;
 }
+
+Ghost.prototype.draw = function(ctx) {
+  ctx.save();
+  ctx.translate(this.x, this.y);
+  draw_ghost(ctx, this.radius, {
+    fill: this.color,
+  });
+  ctx.restore();
+};
