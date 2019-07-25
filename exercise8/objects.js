@@ -71,3 +71,11 @@ Pacman.prototype.update = function(elapsed, width, height) {
   this.time += elapsed;
   this.mouth = Math.abs(Math.sin(2 * Math.PI * this.time));
 };
+
+function Ghost(x, y, radius, speed, color) {
+  this.x = x;
+  this.y = y;
+  this.radius = radius;
+  this.speed = speed;
+  this.color = color;
+}
