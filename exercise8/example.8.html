@@ -27,6 +27,7 @@
 		let previous, elapsed;
 		function frame(timestamp) {
 			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+			draw_grid({ ctx: context });
 			if (!previous) previous = timestamp;
 			elapsed = timestamp - previous;
 			update(elapsed / 1000);

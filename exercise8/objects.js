@@ -43,3 +43,31 @@ Pacman.prototype.turn_left = function() {
 Pacman.prototype.turn_right = function() {
   this.turn(1);
 };
+
+Pacman.prototype.update = function(elapsed, width, height) {
+  // an average of once every 100 frames
+  if (Math.random() <= 0.01) {
+    if (Math.random() < 0.5) {
+      this.turn_left();
+    } else {
+      this.turn_right();
+    }
+  }
+
+  if (this.x - this.radius + elapsed * this.x_speed > width) {
+    this.x = -this.radius;
+  }
+  if (this.x + this.radius + elapsed * this.x_speed < 0) {
+    this.x = width + this.radius;
+  }
+  if (this.y - this.radius + elapsed * this.y_speed > height) {
+    this.y = -this.radius;
+  }
+  if (this.y + this.radius + elapsed * this.y_speed < 0) {
+    this.y = height + this.radius;
+  }
+  this.x += this.x_speed * elapsed;
+  this.y += this.y_speed * elapsed;
+  this.time += elapsed;
+  this.mouth = Math.abs(Math.sin(2 * Math.PI * this.time));
+};
