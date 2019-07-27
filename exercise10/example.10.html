@@ -55,7 +55,10 @@
 		}
 		window.requestAnimationFrame(frame);
 
-		function keyHandler(e) {
+		context.canvas.addEventListener("keyDown", keyDownHandler);
+		context.canvas.focus();
+
+		function keyDownHandler(e) {
 			const key = e.code || e.keyCode;
 			let nothingHandled = false;
 			switch (key) {
