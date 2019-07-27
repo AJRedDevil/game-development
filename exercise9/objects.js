@@ -102,6 +102,23 @@ Asteroid.prototype.draw = function(ctx, guide) {
   ctx.restore();
 };
 
+// Ship Class
+function Ship(x, y) {
+  this.super(x, y, 10, 20, 1.5 * Math.PI);
+}
+extend(Ship, Mass);
+
+Ship.prototype.draw = function(c, guide) {
+  c.save();
+  c.translate(this.x, this.y);
+  c.rotate(this.angle);
+  c.strokeStyle = 'white';
+  c.lineWidth = 2;
+  c.fillStyle = 'black';
+  draw_ship(c, this.radius, {guide});
+  c.restore();
+};
+
 // Pacman
 /*
 function Pacman(x, y, radius, speed) {

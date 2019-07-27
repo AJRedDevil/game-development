@@ -132,3 +132,89 @@ function draw_asteroid(ctx, radius, shape, options = {}) {
   }
   ctx.restore();
 }
+
+function draw_ship(
+  ctx,
+  radius,
+  options = {
+    guide: false,
+    lineWidth: 2,
+    stroke: 'white',
+    fill: 'black',
+    curve1: 0.25,
+    curve2: 0.75,
+  }
+) {
+  ctx.save();
+  if (options.guide) {
+    ctx.strokeStyle = 'white';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath();
+    ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fill();
+  }
+  ctx.lineWidth = options.lineWidth;
+  ctx.strokeStyle = options.stroke;
+  ctx.fillStyle = options.fill;
+  let angle = (options.angle || 0.5 * Math.PI) / 2;
+  ctx.beginPath();
+  ctx.moveTo(radius, 0);
+  // here we have three curves
+  ctx.quadraticCurveTo(
+    Math.cos(angle) * radius * options.curve2,
+    Math.sin(angle) * radius * options.curve2,
+    Math.cos(Math.PI - angle) * radius,
+    Math.sin(Math.PI - angle) * radius
+  );
+  ctx.quadraticCurveTo(
+    -radius * options.curve1,
+    0,
+    Math.cos(Math.PI + angle) * radius,
+    Math.sin(Math.PI + angle) * radius
+  );
+  ctx.quadraticCurveTo(
+    Math.cos(-angle) * radius * options.curve2,
+    Math.sin(-angle) * radius * options.curve2,
+    radius,
+    0
+  );
+  ctx.fill();
+  ctx.stroke();
+  // the guide drawing code is getting complicated
+  if (options.guide) {
+    ctx.strokeStyle = 'white';
+    ctx.fillStyle = 'white';
+    ctx.lineWidth = 0.5;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(-angle) * radius, Math.sin(-angle) * radius);
+    ctx.lineTo(0, 0);
+    ctx.lineTo(Math.cos(angle) * radius, Math.sin(angle) * radius);
+    ctx.moveTo(-radius, 0);
+    ctx.lineTo(0, 0);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(
+      Math.cos(angle) * radius * options.curve2,
+      Math.sin(angle) * radius * options.curve2,
+      radius / 40,
+      0,
+      2 * Math.PI
+    );
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(
+      Math.cos(-angle) * radius * options.curve2,
+      Math.sin(-angle) * radius * options.curve2,
+      radius / 40,
+      0,
+      2 * Math.PI
+    );
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(radius * options.curve1 - radius, 0, radius / 50, 0, 2 * Math.PI);
+    ctx.fill();
+  }
+  ctx.restore();
+}
