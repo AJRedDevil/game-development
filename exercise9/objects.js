@@ -1,3 +1,4 @@
+// Inheritance
 function extend(ChildClass, ParentClass) {
   const parent = ParentClass();
   ChildClass.prototype = parent;
@@ -5,6 +6,7 @@ function extend(ChildClass, ParentClass) {
   ChildClass.prototype.constructor = ChildClass;
 }
 
+// Mass Class
 function Mass(
   x,
   y,
@@ -73,6 +75,35 @@ Mass.prototype.draw = function(c) {
   c.restore();
 };
 
+// Asteroid Class
+function Asteroid(mass, x, y, x_speed, y_speed, rotation_speed) {
+  const density = 1; // kg per square pixel
+  const radius = Math.sqrt(mass / density / Math.PI);
+  this.super(mass, radius, x, y, 0, x_speed, y_speed, rotation_speed);
+  this.circumference = 2 * Math.PI * this.radius;
+  this.segments = Math.ceil(this.circumference / 15);
+  this.segments = Math.min(25, Math.max(5, this.segments));
+  this.noise = 0.2;
+  this.shape = [];
+  for (let i = 0; i < this.segments; i++) {
+    this.shape.push(2 * (Math.random() - 0.5));
+  }
+}
+extend(Asteroid, Mass);
+
+Asteroid.prototype.draw = function(ctx, guide) {
+  ctx.save();
+  ctx.translate(this.x, this.y);
+  ctx.rotate(this.angle);
+  draw_asteroid(ctx, this.radius, this.shape, {
+    noise: this.noise,
+    guide,
+  });
+  ctx.restore();
+};
+
+// Pacman
+/*
 function Pacman(x, y, radius, speed) {
   this.x = x;
   this.y = y;
@@ -171,3 +202,4 @@ Ghost.prototype.update = function(target, elapsed) {
   this.x += x_speed * elapsed;
   this.y += y_speed * elapsed;
 };
+*/
