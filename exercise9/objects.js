@@ -33,16 +33,16 @@ Mass.prototype.update = function(elapsed, ctx) {
   this.angle = this.rotation_speed * elapsed;
   this.angle %= Math.PI * 2;
   if (this.x - this.radius > ctx.canvas.width) {
-    this.x -= this.radius;
+    this.x = -this.radius;
   }
   if (this.x + this.radius < 0) {
-    this.x += this.radius;
+    this.x = ctx.canvas.width + this.radius;
   }
   if (this.y - this.radius > ctx.canvas.height) {
-    this.y -= this.radius;
+    this.y = -this.radius;
   }
   if (this.y + this.radius < 0) {
-    this.y += this.radius;
+    this.y = ctx.canvas.height + this.radius;
   }
 };
 
