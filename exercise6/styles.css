@@ -5,4 +5,8 @@ body {
 
 canvas {
   background-color: black;
+  border: 10px solid white;
+}
+canvas:focus {
+  border: 10px solid grey;
 }
