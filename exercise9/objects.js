@@ -18,6 +18,25 @@ function Mass(
   this.rotation_speed = rotation_speed;
 }
 
+Mass.prototype.update = function(elapsed, ctx) {
+  this.x += this.x_speed * elapsed;
+  this.y += this.y_speed * elapsed;
+  this.angle = this.rotation_speed * elapsed;
+  this.angle %= Math.PI * 2;
+  if (this.x - this.radius > ctx.canvas.width) {
+    this.x -= this.radius;
+  }
+  if (this.x + this.radius < 0) {
+    this.x += this.radius;
+  }
+  if (this.y - this.radius > ctx.canvas.height) {
+    this.y -= this.radius;
+  }
+  if (this.y + this.radius < 0) {
+    this.y += this.radius;
+  }
+};
+
 function Pacman(x, y, radius, speed) {
   this.x = x;
   this.y = y;
