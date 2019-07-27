@@ -15,20 +15,32 @@
 		const context = document.getElementById("asteroids").getContext("2d");
 
 		const mass = new Mass(context.canvas.width / 2, context.canvas.height / 2, 10, 20);
-		const asteroid = new Asteroid(
-			10000,
-			Math.random() * context.canvas.width,
-			Math.random() * context.canvas.height
-		);
+		const asteroids = [
+			new Asteroid(
+				10000,
+				Math.random() * context.canvas.width,
+				Math.random() * context.canvas.height
+			),
+			new Asteroid(
+				1000,
+				Math.random() * context.canvas.width,
+				Math.random() * context.canvas.height
+			),
+			new Asteroid(
+				100000,
+				Math.random() * context.canvas.width,
+				Math.random() * context.canvas.height
+			),
+		];
 
 		function draw(ctx) {
 			ctx.clearRect(0, 0, context.canvas.width, context.canvas.height);
 			draw_grid({ ctx });
-			asteroid.draw(ctx);
+			asteroids.forEach(asteroid => asteroid.draw(ctx));
 		}
 
 		function update(elapsed) {
-			asteroid.update(elapsed, context);
+			asteroids.forEach(asteroid => asteroid.update(elapsed, context));
 		}
 
 		let previous;
