@@ -1,3 +1,23 @@
+function Mass(
+  x,
+  y,
+  mass = 1,
+  radius = 50,
+  angle = 0,
+  x_speed = 0,
+  y_speed = 0,
+  rotation_speed = 0
+) {
+  this.x = x;
+  this.y = y;
+  this.mass = mass;
+  this.radius = radius;
+  this.angle = angle;
+  this.x_speed = x_speed;
+  this.y_speed = y_speed;
+  this.rotation_speed = rotation_speed;
+}
+
 function Pacman(x, y, radius, speed) {
   this.x = x;
   this.y = y;
