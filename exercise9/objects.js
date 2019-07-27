@@ -46,8 +46,12 @@ Mass.prototype.twist = function(force, elapsed) {
   this.rotation_speed += (elapsed * force) / this.mass;
 };
 
-Mass.prototype.twist = function (force, elapsed) { 
-  this.rotation_speed += elapsed * force / this.mass;
+Mass.prototype.speed = function() {
+  return Math.sqrt(Math.pow(this.x_speed, 2) + Math.pow(this.y_speed, 2));
+};
+
+Mass.prototype.movement_angle = function () {
+  return Math.atan2(this.y_speed, this.x_speed);
 }
 
 function Pacman(x, y, radius, speed) {
