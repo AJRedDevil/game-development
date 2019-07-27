@@ -1,6 +1,6 @@
 // Inheritance
 function extend(ChildClass, ParentClass) {
-  const parent = ParentClass();
+  const parent = new ParentClass();
   ChildClass.prototype = parent;
   ChildClass.prototype.super = parent.constructor;
   ChildClass.prototype.constructor = ChildClass;
