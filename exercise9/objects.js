@@ -79,7 +79,7 @@ Mass.prototype.draw = function(c) {
 function Asteroid(mass, x, y, x_speed, y_speed, rotation_speed) {
   const density = 1; // kg per square pixel
   const radius = Math.sqrt(mass / density / Math.PI);
-  this.super(mass, radius, x, y, 0, x_speed, y_speed, rotation_speed);
+  this.super(x, y, mass, radius, 0, x_speed, y_speed, rotation_speed);
   this.circumference = 2 * Math.PI * this.radius;
   this.segments = Math.ceil(this.circumference / 15);
   this.segments = Math.min(25, Math.max(5, this.segments));
