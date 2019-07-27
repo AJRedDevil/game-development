@@ -37,6 +37,11 @@ Mass.prototype.update = function(elapsed, ctx) {
   }
 };
 
+Mass.prototype.push = function(angle, force, elapsed) {
+  this.x_speed; += elapsed * (Math.cos(angle) * force) / this.mass;
+  this.y_speed; += elapsed * (Math.sin(angle) * force) / this.mass;
+};
+
 function Pacman(x, y, radius, speed) {
   this.x = x;
   this.y = y;
