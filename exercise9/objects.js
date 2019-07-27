@@ -38,8 +38,12 @@ Mass.prototype.update = function(elapsed, ctx) {
 };
 
 Mass.prototype.push = function(angle, force, elapsed) {
-  this.x_speed; += elapsed * (Math.cos(angle) * force) / this.mass;
-  this.y_speed; += elapsed * (Math.sin(angle) * force) / this.mass;
+  this.x_speed += (elapsed * (Math.cos(angle) * force)) / this.mass;
+  this.y_speed += (elapsed * (Math.sin(angle) * force)) / this.mass;
+};
+
+Mass.prototype.twist = function(force, elapsed) {
+  this.rotation_speed += (elapsed * force) / this.mass;
 };
 
 Mass.prototype.twist = function (force, elapsed) { 
