@@ -55,8 +55,9 @@
 		}
 		window.requestAnimationFrame(frame);
 
-		window.onkeydown = function (e) {
+		function keyHandler(e) {
 			const key = e.code || e.keyCode;
+			let nothingHandled = false;
 			switch (key) {
 				case 'ArrowLeft':
 				case 37: // left arrow keyCode
@@ -74,7 +75,10 @@
 				case 40: // down arrow keyCode
 					pacman.move_down();
 					break;
+				default:
+					nothingHandled = true;
 			}
+			if (!nothingHandled) e.preventDefault();
 		}
 	</script>
 </body>
