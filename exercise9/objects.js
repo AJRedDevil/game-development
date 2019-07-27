@@ -50,9 +50,21 @@ Mass.prototype.speed = function() {
   return Math.sqrt(Math.pow(this.x_speed, 2) + Math.pow(this.y_speed, 2));
 };
 
-Mass.prototype.movement_angle = function () {
+Mass.prototype.movement_angle = function() {
   return Math.atan2(this.y_speed, this.x_speed);
-}
+};
+
+Mass.prototype.draw = function(c) {
+  c.save();
+  c.translate(this.x, this.y);
+  c.rotate(this.angle);
+  c.beginPath();
+  c.arc(0, 0, this.radius, 0, 2 * Math.PI);
+  c.lineTo(0, 0);
+  c.strokeStyle = '#FFFFFF';
+  c.stroke();
+  c.restore();
+};
 
 function Pacman(x, y, radius, speed) {
   this.x = x;
