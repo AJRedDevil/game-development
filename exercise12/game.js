@@ -100,7 +100,12 @@ AsteroidsGame.prototype.frame = function(timestamp) {
 
 AsteroidsGame.prototype.update = function(elapsed) {
   this.ship.compromised = false;
-  this.asteroids.forEach(asteroid => asteroid.update(elapsed, this.c), this);
+  this.asteroids.forEach(asteroid => {
+    asteroid.update(elapsed, this.c);
+    if (collission(asteroid, this.ship)) {
+      this.ship.compromised = true;
+    }
+  }, this);
   this.ship.update(elapsed, this.c);
   this.projectiles.forEach((p, i, projectiles) => {
     p.update(elapsed, this.c);
