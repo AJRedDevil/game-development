@@ -135,6 +135,9 @@ AsteroidsGame.prototype.draw = function() {
     draw_grid(this.c);
     this.asteroids.forEach(asteroid => {
       draw_line(this.c, asteroid, this.ship);
+      this.projectiles.forEach(p => {
+        draw_line(this.c, asteroid, p);
+      }, this);
     }, this);
   }
   this.asteroids.forEach(asteroid => asteroid.draw(this.c, this.guide), this);
