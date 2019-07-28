@@ -106,6 +106,9 @@ Asteroid.prototype.draw = function(ctx, guide) {
 function Ship(x, y, power) {
   this.super(x, y, 10, 20, 1.5 * Math.PI);
   this.thruster_power = power;
+  this.steering_power = power / 20;
+  this.right_thruster = false;
+  this.left_thruster = false;
   this.thruster_on = false;
 }
 extend(Ship, Mass);
