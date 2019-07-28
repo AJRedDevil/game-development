@@ -14,10 +14,6 @@
 	<script>
 		const context = document.getElementById("asteroids").getContext("2d");
 		let guide = true;
-		context.canvas.addEventListener("keydown", e => keyHandler(e, true), true);
-		context.canvas.addEventListener("keyup", e => keyHandler(e, false), true);
-		context.canvas.focus();
-
 		const asteroids = [];
 		for (let i = 0; i < 4; i++) {
 			let asteroid = new Asteroid(
@@ -29,16 +25,16 @@
 			asteroid.twist((Math.random() - 0.5) * 500, 60);
 			asteroids.push(asteroid);
 		}
-		const ship = new Ship(10, 20, context.canvas.width / 2, context.canvas.height / 2, 1000, 200);
+		const ship = new Ship(10, 15, context.canvas.width / 2, context.canvas.height / 2, 1000, 200);
 		const projectiles = [];
 
 		function draw(ctx) {
 			if (guide) {
 				draw_grid({ ctx });
 			}
-			ship.draw(ctx, guide);
-			projectiles.forEach(projectile => projectile.draw(ctx, guide));
 			asteroids.forEach(asteroid => asteroid.draw(ctx, guide));
+			projectiles.forEach(projectile => projectile.draw(ctx, guide));
+			ship.draw(ctx, guide);
 		}
 
 		function update(elapsed) {
@@ -54,18 +50,6 @@
 				projectiles.push(ship.projectile(elapsed));
 			}
 		}
-
-		let previous;
-		function frame(timestamp) {
-			if (!previous) previous = timestamp;
-			elapsed = timestamp - previous;
-			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
-			update(elapsed / 1000);
-			draw(context);
-			previous = timestamp;
-			window.requestAnimationFrame(frame);
-		}
-		window.requestAnimationFrame(frame);
 
 		function keyHandler(e, value) {
 			let nothingHandled = false;
@@ -94,6 +78,26 @@
 			}
 			if (!nothingHandled) e.preventDefault();
 		}
+
+		context.canvas.addEventListener(
+			"keydown", e => keyHandler(e, true),
+			true);
+		context.canvas.addEventListener(
+			"keyup", e => keyHandler(e, false),
+			true);
+		context.canvas.focus();
+
+		let previous;
+		function frame(timestamp) {
+			if (!previous) previous = timestamp;
+			elapsed = timestamp - previous;
+			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+			update(elapsed / 1000);
+			draw(context);
+			previous = timestamp;
+			window.requestAnimationFrame(frame);
+		}
+		window.requestAnimationFrame(frame);
 	</script>
 </body>
 
