@@ -13,6 +13,7 @@
 	<canvas id="asteroids" width="600" height="600" tabindex="1"></canvas>
 	<script>
 		const context = document.getElementById("asteroids").getContext("2d");
+		let guide = true;
 		context.canvas.addEventListener("keydown", e => keyHandler(e, true), true);
 		context.canvas.addEventListener("keyup", e => keyHandler(e, false), true);
 		context.canvas.focus();
@@ -32,8 +33,8 @@
 
 		function draw(ctx) {
 			draw_grid({ ctx });
-			ship.draw(ctx, true);
-			asteroids.forEach(asteroid => asteroid.draw(ctx, true));
+			ship.draw(ctx, guide);
+			asteroids.forEach(asteroid => asteroid.draw(ctx, guide));
 		}
 
 		function update(elapsed) {
@@ -60,6 +61,17 @@
 				case 38: // up arrow
 					ship.thruster_on = value;
 					break;
+				case "ArrowLeft":
+				case 37: // left arrow
+					ship.left_thruster = value;
+					break;
+				case "ArrowRight":
+				case 40: // right arrow
+					ship.right_thruster = value;
+					break;
+				case "KeyG":
+				case 71: //g 
+					if (value) guide = !guide;
 				default:
 					nothingHandled = true;
 			}
