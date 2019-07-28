@@ -30,7 +30,7 @@
 
 		function draw(ctx) {
 			if (guide) {
-				draw_grid({ ctx });
+				draw_grid(ctx);
 			}
 			asteroids.forEach(asteroid => asteroid.draw(ctx, guide));
 			projectiles.forEach(projectile => projectile.draw(ctx, guide));
