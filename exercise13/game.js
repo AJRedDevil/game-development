@@ -44,10 +44,9 @@ const AsteroidsGame = function(id) {
 };
 
 AsteroidsGame.prototype.reset_game = function() {
-  this.game_over = false;
   this.score = 0;
-  this.level = 1;
-
+  this.level = 0;
+  this.game_over = false;
   this.ship = new Ship(
     this.ship_mass,
     this.ship_radius,
@@ -58,7 +57,7 @@ AsteroidsGame.prototype.reset_game = function() {
   );
   this.projectiles = [];
   this.asteroids = [];
-  this.asteroids.push(this.moving_asteroid());
+  this.level_up();
 };
 
 AsteroidsGame.prototype.level_up = function() {
