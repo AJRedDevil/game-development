@@ -146,6 +146,7 @@ Ship.prototype.projectile = function(elapsed) {
   );
   p.push(this.angle, this.weapon_power, elapsed);
   this.push(this.angle + Math.PI, this.weapon_power, elapsed);
+  this.time_until_reload = this.weapon_reload_time;
   return p;
 };
 
