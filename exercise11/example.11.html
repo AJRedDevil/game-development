@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Inheritance</title>
+	<link rel="stylesheet" href="./styles.css">
+	<script src="./drawing.js"></script>
+	<script src="./objects.js"></script>
+</head>
+
+<body>
+	<h1>Inheritance</h1>
+	<canvas id="asteroids" width="600" height="600" tabindex="1"></canvas>
+	<script>
+		const context = document.getElementById("asteroids").getContext("2d");
+		let guide = true;
+		const asteroids = [];
+		for (let i = 0; i < 4; i++) {
+			let asteroid = new Asteroid(
+				2000 + Math.random() * 8000,
+				Math.random() * context.canvas.width,
+				Math.random() * context.canvas.height
+			);
+			asteroid.push(Math.random() * 2 * Math.PI, 2000, 60);
+			asteroid.twist((Math.random() - 0.5) * 500, 60);
+			asteroids.push(asteroid);
+		}
+		const ship = new Ship(10, 15, context.canvas.width / 2, context.canvas.height / 2, 1000, 200);
+		const projectiles = [];
+
+		function draw(ctx) {
+			if (guide) {
+				draw_grid(ctx);
+			}
+			asteroids.forEach(asteroid => asteroid.draw(ctx, guide));
+			projectiles.forEach(projectile => projectile.draw(ctx, guide));
+			ship.draw(ctx, guide);
+		}
+
+		function update(elapsed) {
+			asteroids.forEach(asteroid => asteroid.update(elapsed, context));
+			ship.update(elapsed, context);
+			projectiles.forEach((projectile, index, projectiles) => {
+				projectile.update(elapsed, context);
+				if (projectile.life <= 0) {
+					projectiles.splice(index, 1);
+				}
+			});
+			if (ship.trigger && ship.loaded) {
+				projectiles.push(ship.projectile(elapsed));
+			}
+		}
+
+		function keyHandler(e, value) {
+			let nothingHandled = false;
+			switch (e.code || e.keyCode) {
+				case "ArrowUp":
+				case 38: // up arrow
+					ship.thruster_on = value;
+					break;
+				case "ArrowDown":
+				case 39: // down arrow
+					ship.retro_on = value;
+					break;
+				case "ArrowLeft":
+				case 37: // left arrow
+					ship.left_thruster = value;
+					break;
+				case "ArrowRight":
+				case 40: // right arrow
+					ship.right_thruster = value;
+					break;
+				case "Space":
+				case 32: // spacebar
+					ship.trigger = value;
+					break;
+				case "KeyG":
+				case 71: //g 
+					if (value) guide = !guide;
+				default:
+					nothingHandled = true;
+			}
+			if (!nothingHandled) e.preventDefault();
+		}
+
+		context.canvas.addEventListener(
+			"keydown", e => keyHandler(e, true),
+			true);
+		context.canvas.addEventListener(
+			"keyup", e => keyHandler(e, false),
+			true);
+		context.canvas.focus();
+
+		let previous;
+		function frame(timestamp) {
+			if (!previous) previous = timestamp;
+			elapsed = timestamp - previous;
+			context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+			update(elapsed / 1000);
+			draw(context);
+			previous = timestamp;
+			window.requestAnimationFrame(frame);
+		}
+		window.requestAnimationFrame(frame);
+	</script>
+</body>
+
+</html>
