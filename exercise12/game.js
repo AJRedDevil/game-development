@@ -67,6 +67,22 @@ AsteroidsGame.prototype.push_asteroid = function(asteroid, elapsed = 0.015) {
   );
 };
 
+AsteroidsGame.prototype.split_asteroid = function(asteroid, elapsed) {
+  asteroid.mass -= this.mass_destroyed;
+  this.score += this.mass_destroyed;
+  const split = 0.25 + 0.5 * Math.random(); // split unevenly
+  const ch1 = asteroid.child(asteroid.mass * split);
+  const ch2 = asteroid.child(asteroid.mass * (1 - split));
+  [ch1, ch2].forEach(child => {
+    if (child.mass < this.mass_destroyed) {
+      this.score += child.mass;
+    } else {
+      this.push_asteroid(child, elapsed);
+      this.asteroids.push(child);
+    }
+  }, this);
+};
+
 AsteroidsGame.prototype.keyDown = function(e) {
   this.key_handler(e, true);
 };
@@ -159,20 +175,4 @@ AsteroidsGame.prototype.draw = function() {
     p.draw(this.c);
   }, this);
   this.health_indicator.draw(this.c, this.ship.health, this.ship.max_health);
-};
-
-AsteroidsGame.prototype.split_asteroid = function(asteroid, elapsed) {
-  asteroid.mass -= this.mass_destroyed;
-  this.score += this.mass_destroyed;
-  const split = 0.25 + 0.5 * Math.random(); // split unevenly
-  const ch1 = asteroid.child(asteroid.mass * split);
-  const ch2 = asteroid.child(asteroid.mass * (1 - split));
-  [ch1, ch2].forEach(child => {
-    if (child.mass < this.mass_destroyed) {
-      this.score += child.mass;
-    } else {
-      this.push_asteroid(child, elapsed);
-      this.asteroids.push(child);
-    }
-  }, this);
 };
