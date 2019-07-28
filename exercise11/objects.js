@@ -136,7 +136,7 @@ Ship.prototype.update = function(elapsed, c) {
 
 Ship.prototype.projectile = function(elapsed) {
   const p = new Projectile(
-    0.25,
+    0.025,
     1,
     this.x + Math.cos(this.angle) * this.radius,
     this.y + Math.sin(this.angle) * this.radius,
