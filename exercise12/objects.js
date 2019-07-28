@@ -125,6 +125,14 @@ Ship.prototype.draw = function(c, guide) {
   c.save();
   c.translate(this.x, this.y);
   c.rotate(this.angle);
+  if (guide && this.compromised) {
+    c.save();
+    c.fillStyle = 'red';
+    c.beginPath();
+    c.arc(0, 0, this.radius, 0, 2 * Math.PI);
+    c.fill();
+    c.restore();
+  }
   draw_ship(c, this.radius, {guide, thruster: this.thruster_on});
   c.restore();
 };
