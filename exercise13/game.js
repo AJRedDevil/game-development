@@ -28,6 +28,12 @@ const AsteroidsGame = function(id) {
     this.canvas.height - 15,
     {digits: 2}
   );
+  this.level_indicator = new NumberIndicator(
+    'level',
+    this.canvas.width / 2,
+    5,
+    {align: 'center'}
+  );
   this.message = new Message(this.canvas.width / 2, this.canvas.height * 0.4);
 
   this.canvas.addEventListener('keydown', this.keyDown.bind(this), true);
@@ -40,6 +46,7 @@ const AsteroidsGame = function(id) {
 AsteroidsGame.prototype.reset_game = function() {
   this.game_over = false;
   this.score = 0;
+  this.level = 1;
 
   this.ship = new Ship(
     this.ship_mass,
@@ -196,4 +203,5 @@ AsteroidsGame.prototype.draw = function(fps) {
   }, this);
   this.health_indicator.draw(this.c, this.ship.health, this.ship.max_health);
   this.score_indicator.draw(this.c, this.score);
+  this.level_indicator.draw(this.c, this.level);
 };
