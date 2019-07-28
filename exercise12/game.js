@@ -88,3 +88,18 @@ AsteroidsGame.prototype.frame = function(timestamp) {
   this.previous = timestamp;
   window.requestAnimationFrame(this.frame.bind(this));
 };
+
+AsteroidsGame.prototype.update = function(elapsed) {
+  this.ship.compromised = false;
+  this.asteroids.forEach(asteroid => asteroid.update(elapsed, this.c), this);
+  this.ship.update(elapsed, this.c);
+  this.projectiles.forEach((p, i, projectiles) => {
+    p.update(elapsed, this.c);
+    if (p.life <= 0) {
+      projectiles.splice(i, 1);
+    }
+  }, this);
+  if (this.ship.trigger && this.ship.loaded) {
+    this.projectiles.push(this.ship.projectile(elapsed));
+  }
+};
