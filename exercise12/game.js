@@ -158,7 +158,7 @@ AsteroidsGame.prototype.update = function(elapsed) {
   }
 };
 
-AsteroidsGame.prototype.draw = function() {
+AsteroidsGame.prototype.draw = function(fps) {
   this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
   if (this.guide) {
     draw_grid(this.c);
@@ -168,6 +168,7 @@ AsteroidsGame.prototype.draw = function() {
         draw_line(this.c, asteroid, p);
       }, this);
     }, this);
+    this.fps_indicator.draw(this.c, fps);
   }
   this.asteroids.forEach(asteroid => asteroid.draw(this.c, this.guide), this);
   this.ship.draw(this.c, this.guide);
@@ -175,4 +176,5 @@ AsteroidsGame.prototype.draw = function() {
     p.draw(this.c);
   }, this);
   this.health_indicator.draw(this.c, this.ship.health, this.ship.max_health);
+  this.score_indicator.draw(this.c, this.score);
 };
