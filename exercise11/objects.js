@@ -133,6 +133,21 @@ Ship.prototype.update = function(elapsed, c) {
   Mass.prototype.update.apply(this, arguments);
 };
 
+Ship.prototype.projectile = function(elapsed) {
+  const p = new Projectile(
+    0.25,
+    1,
+    this.x + Math.cos(this.angle) * this.radius,
+    this.y + Math.sin(this.angle) * this.radius,
+    this.x_speed,
+    this.y_speed,
+    this.rotation_speed
+  );
+  p.push(this.angle, this.weapon_power, elapsed);
+  this.push(this.angle + Math.PI, this.weapon_power, elapsed);
+  return p;
+};
+
 // Projectile Class
 function Projectile(mass, lifetime, x, y, x_speed, y_speed, rotation_speed) {
   const density = 0.001; // low density means we can see very light projectiles
