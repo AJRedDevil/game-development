@@ -14,6 +14,8 @@ const AsteroidsGame = function(id) {
   this.ship_radius = 15;
   this.asteroid_mass = 500;
   this.asteroid_push = 500000; // max force to apply in one frame
+  this.mass_destroyed = 500;
+  this.score = 0;
 
   this.ship = new Ship(
     this.ship_mass,
@@ -112,6 +114,14 @@ AsteroidsGame.prototype.update = function(elapsed) {
     p.update(elapsed, this.c);
     if (p.life <= 0) {
       projectiles.splice(i, 1);
+    } else {
+      this.asteroids.forEach((asteroid, i) => {
+        if (collission(asteroid, p)) {
+          projectiles.splice(i, 1);
+          this.asteroids.splice(j, 1);
+          this.split_asteroid(asteroid, elapsed);
+        }
+      }, this);
     }
   }, this);
   if (this.ship.trigger && this.ship.loaded) {
