@@ -115,7 +115,7 @@ AsteroidsGame.prototype.update = function(elapsed) {
     if (p.life <= 0) {
       projectiles.splice(i, 1);
     } else {
-      this.asteroids.forEach((asteroid, i) => {
+      this.asteroids.forEach((asteroid, j) => {
         if (collission(asteroid, p)) {
           projectiles.splice(i, 1);
           this.asteroids.splice(j, 1);
