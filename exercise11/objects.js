@@ -143,6 +143,11 @@ function Projectile(mass, lifetime, x, y, x_speed, y_speed, rotation_speed) {
 }
 extend(Projectile, Mass);
 
+Projectile.prototype.update = function(elapsed) {
+  this.life -= elapsed / this.lifetime;
+  Mass.prototype.update.apply(this, arguments);
+};
+
 // Pacman
 /*
 function Pacman(x, y, radius, speed) {
