@@ -103,3 +103,17 @@ AsteroidsGame.prototype.update = function(elapsed) {
     this.projectiles.push(this.ship.projectile(elapsed));
   }
 };
+
+AsteroidsGame.prototype.draw = function() {
+  this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  if (this.guide) {
+    draw_guide(this.c);
+    this.asteroids.forEach(asteroid => {
+      draw_line(this.c, asteroid, this.ship);
+    }, this);
+    this.ship.draw(this.c, this.guide);
+    this.projectiles.forEach(p => {
+      p.draw(this);
+    }, this);
+  }
+};
