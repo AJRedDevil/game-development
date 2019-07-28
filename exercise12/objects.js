@@ -115,6 +115,9 @@ function Ship(mass = 10, radius = 20, x, y, power, weapon_power = 200) {
   this.loaded = false;
   this.weapon_reload_time = 0.25; // second
   this.time_until_reload = this.weapon_reload_time;
+  this.compromised = false;
+  this.max_health = 2.0;
+  this.health = this.max_health;
 }
 extend(Ship, Mass);
 
@@ -182,4 +185,3 @@ Projectile.prototype.update = function(elapsed) {
   this.life -= elapsed / this.lifetime;
   Mass.prototype.update.apply(this, arguments);
 };
-
