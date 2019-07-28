@@ -103,8 +103,8 @@ Asteroid.prototype.draw = function(ctx, guide) {
 };
 
 // Ship Class
-function Ship(x, y, power, weapon_power = 200) {
-  this.super(x, y, 10, 20, 1.5 * Math.PI);
+function Ship(x, y, mass = 10, radius = 20, power, weapon_power = 200) {
+  this.super(x, y, mass, radius, 1.5 * Math.PI);
   this.thruster_power = power;
   this.steering_power = power / 20;
   this.right_thruster = false;
