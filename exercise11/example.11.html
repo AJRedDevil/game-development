@@ -50,7 +50,7 @@
 					projectiles.splice(index, 1);
 				}
 			});
-			if (ship.trigger) {
+			if (ship.trigger && ship.loaded) {
 				projectiles.push(ship.projectile(elapsed));
 			}
 		}
