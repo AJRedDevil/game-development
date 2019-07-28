@@ -29,6 +29,19 @@ const AsteroidsGame = function(id) {
   this.asteroids = [];
   this.asteroids.push(this.moving_asteroid());
   this.health_indicator = new Indicator('heath', 5, 5, 100, 10);
+  this.score_indicator = new NumberIndicator(
+    'score',
+    this.canvas.width - 10,
+    this.canvas.height - 15,
+    {digits: 2}
+  );
+  this.fps_indicator = new NumberIndicator(
+    'fps',
+    this.canvas.width - 10,
+    this.canvas.height - 15,
+    {digits: 2}
+  );
+
   this.canvas.addEventListener('keydown', this.keyDown.bind(this), true);
   this.canvas.addEventListener('keyup', this.keyUp.bind(this), true);
   window.requestAnimationFrame(this.frame.bind(this));
