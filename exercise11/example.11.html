@@ -82,6 +82,10 @@
 				case 40: // right arrow
 					ship.right_thruster = value;
 					break;
+				case "Space":
+				case 32: // spacebar
+					ship.trigger = value;
+					break;
 				case "KeyG":
 				case 71: //g 
 					if (value) guide = !guide;
