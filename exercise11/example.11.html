@@ -61,6 +61,19 @@
 			window.requestAnimationFrame(frame);
 		}
 		window.requestAnimationFrame(frame);
+
+		function keyHanlder(e, value) {
+			let nothingHandled = false;
+			switch (e.key || e.keyCode) {
+				case "ArrowUp":
+				case 38: // up arrow
+					ship.thruster_on = value;
+					break;
+				default:
+					nothingHandled = true;
+			}
+			if (!nothingHandled) e.preventDefault();
+		}
 	</script>
 </body>
 
