@@ -33,8 +33,11 @@
 		const projectiles = [];
 
 		function draw(ctx) {
-			draw_grid({ ctx });
+			if (guide) {
+				draw_grid({ ctx });
+			}
 			ship.draw(ctx, guide);
+			projectiles.forEach(projectile => projectile.draw(ctx, guide));
 			asteroids.forEach(asteroid => asteroid.draw(ctx, guide));
 		}
 
