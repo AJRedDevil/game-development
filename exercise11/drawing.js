@@ -222,7 +222,7 @@ function draw_ship(ctx, radius, options = {}) {
   ctx.restore();
 }
 
-function draw_projectile(ctx, radius, life) {
+function draw_projectile(ctx, radius, lifetime) {
   ctx.save();
   ctx.fillStyle = 'rgb(100%, 100%, ' + 100 * lifetime + '%)';
   ctx.beginPath();
