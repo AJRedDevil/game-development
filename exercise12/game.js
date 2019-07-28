@@ -73,7 +73,7 @@ AsteroidsGame.prototype.key_handler = function(e, value) {
       break;
     case 'KeyG':
     case 71: //g
-      if (value) guide = !guide;
+      if (value) this.guide = !this.guide;
     default:
       nothingHandled = true;
   }
@@ -107,7 +107,7 @@ AsteroidsGame.prototype.update = function(elapsed) {
 AsteroidsGame.prototype.draw = function() {
   this.c.clearRect(0, 0, this.canvas.width, this.canvas.height);
   if (this.guide) {
-    draw_guide(this.c);
+    draw_grid(this.c);
     this.asteroids.forEach(asteroid => {
       draw_line(this.c, asteroid, this.ship);
     }, this);
