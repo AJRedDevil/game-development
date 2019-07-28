@@ -1,10 +1,10 @@
-function draw_grid({
+function draw_grid(
   ctx,
   major,
   minor = 10,
   stroke = '#00FF00',
-  fill = '#009900',
-}) {
+  fill = '#009900'
+) {
   const finalMajor = major || minor * 5;
   ctx.save();
   ctx.strokeStyle = stroke;
@@ -108,6 +108,9 @@ function draw_ghost(ctx, radius, options = {}) {
 function draw_asteroid(ctx, radius, shape, options = {}) {
   ctx.strokeStyle = options.stroke || 'white';
   ctx.fillStyle = options.fill || 'black';
+  if (options.noise === undefined) {
+    options.noise = 0.4;
+  }
   ctx.save();
   ctx.beginPath();
   for (let i = 0; i < shape.length; i++) {
@@ -141,6 +144,28 @@ function draw_ship(ctx, radius, options = {}) {
   let angle = (options.angle || 0.5 * Math.PI) / 2;
   let curve1 = options.curve1 || 0.25;
   let curve2 = options.curve2 || 0.75;
+
+  if (options.thruster) {
+    ctx.save();
+    ctx.strokeStyle = 'yellow';
+    ctx.fillStyle = 'red';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(
+      (Math.cos(Math.PI + angle * 0.8) * radius) / 2,
+      (Math.sin(Math.PI + angle * 0.8) * radius) / 2
+    );
+    ctx.quadraticCurveTo(
+      -radius * 2,
+      0,
+      (Math.cos(Math.PI - angle * 0.8) * radius) / 2,
+      (Math.sin(Math.PI - angle * 0.8) * radius) / 2
+    );
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  }
+
   ctx.beginPath();
   ctx.moveTo(radius, 0);
   ctx.quadraticCurveTo(
@@ -198,26 +223,6 @@ function draw_ship(ctx, radius, options = {}) {
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2 * Math.PI);
     ctx.stroke();
-  }
-  if (options.thruster) {
-    ctx.save();
-    ctx.strokeStyle = 'yellow';
-    ctx.fillStyle = 'red';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(
-      (Math.cos(Math.PI + angle * 0.8) * radius) / 2,
-      (Math.sin(Math.PI + angle * 0.8) * radius) / 2
-    );
-    ctx.quadraticCurveTo(
-      -radius * 2,
-      0,
-      (Math.cos(Math.PI - angle * 0.8) * radius) / 2,
-      (Math.sin(Math.PI - angle * 0.8) * radius) / 2
-    );
-    ctx.fill();
-    ctx.stroke();
-    ctx.restore();
   }
   ctx.restore();
 }
