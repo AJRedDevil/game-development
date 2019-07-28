@@ -29,7 +29,7 @@
 			asteroid.twist((Math.random() - 0.5) * 500, 60);
 			asteroids.push(asteroid);
 		}
-		const ship = new Ship(context.canvas.width / 2, context.canvas.height / 2, 10, 20, 1000, 200);
+		const ship = new Ship(10, 20, context.canvas.width / 2, context.canvas.height / 2, 1000, 200);
 		const projectiles = [];
 
 		function draw(ctx) {

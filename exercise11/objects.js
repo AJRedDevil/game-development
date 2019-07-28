@@ -8,10 +8,10 @@ function extend(ChildClass, ParentClass) {
 
 // Mass Class
 function Mass(
-  x,
-  y,
   mass = 1,
   radius = 50,
+  x,
+  y,
   angle = 0,
   x_speed = 0,
   y_speed = 0,
@@ -79,7 +79,7 @@ Mass.prototype.draw = function(c) {
 function Asteroid(mass, x, y, x_speed, y_speed, rotation_speed) {
   const density = 1; // kg per square pixel
   const radius = Math.sqrt(mass / density / Math.PI);
-  this.super(x, y, mass, radius, 0, x_speed, y_speed, rotation_speed);
+  this.super(mass, radius, x, y, 0, x_speed, y_speed, rotation_speed);
   this.circumference = 2 * Math.PI * this.radius;
   this.segments = Math.ceil(this.circumference / 15);
   this.segments = Math.min(25, Math.max(5, this.segments));
@@ -103,8 +103,8 @@ Asteroid.prototype.draw = function(ctx, guide) {
 };
 
 // Ship Class
-function Ship(x, y, mass = 10, radius = 20, power, weapon_power = 200) {
-  this.super(x, y, mass, radius, 1.5 * Math.PI);
+function Ship(mass = 10, radius = 20, x, y, power, weapon_power = 200) {
+  this.super(mass, radius, x, y, 1.5 * Math.PI);
   this.thruster_power = power;
   this.steering_power = power / 20;
   this.right_thruster = false;
@@ -154,7 +154,7 @@ Ship.prototype.projectile = function(elapsed) {
 function Projectile(mass, lifetime, x, y, x_speed, y_speed, rotation_speed) {
   const density = 0.001; // low density means we can see very light projectiles
   const radius = Math.sqrt(mass / density / Math.PI);
-  this.super(x, y, mass, radius, 0, x_speed, y_speed, rotation_speed);
+  this.super(mass, radius, x, y, 0, x_speed, y_speed, rotation_speed);
   this.lifetime = lifetime;
   this.life = 1.0;
 }
