@@ -15,21 +15,7 @@ const AsteroidsGame = function(id) {
   this.asteroid_mass = 10000;
   this.asteroid_push = 500000; // max force to apply in one frame
   this.mass_destroyed = 500;
-  this.score = 0;
-  this.game_over = false;
-  this.message = new Message(this.canvas.width / 2, this.canvas.height * 0.4);
 
-  this.ship = new Ship(
-    this.ship_mass,
-    this.ship_radius,
-    this.canvas.width / 2,
-    this.canvas.height / 2,
-    1000,
-    200
-  );
-  this.projectiles = [];
-  this.asteroids = [];
-  this.asteroids.push(this.moving_asteroid());
   this.health_indicator = new Indicator('heath', 5, 5, 100, 10);
   this.score_indicator = new NumberIndicator(
     'score',
@@ -42,10 +28,30 @@ const AsteroidsGame = function(id) {
     this.canvas.height - 15,
     {digits: 2}
   );
+  this.message = new Message(this.canvas.width / 2, this.canvas.height * 0.4);
 
   this.canvas.addEventListener('keydown', this.keyDown.bind(this), true);
   this.canvas.addEventListener('keyup', this.keyUp.bind(this), true);
   window.requestAnimationFrame(this.frame.bind(this));
+
+  this.reset_game();
+};
+
+AsteroidsGame.prototype.reset_game = function() {
+  this.game_over = false;
+  this.score = 0;
+
+  this.ship = new Ship(
+    this.ship_mass,
+    this.ship_radius,
+    this.canvas.width / 2,
+    this.canvas.height / 2,
+    1000,
+    200
+  );
+  this.projectiles = [];
+  this.asteroids = [];
+  this.asteroids.push(this.moving_asteroid());
 };
 
 AsteroidsGame.prototype.moving_asteroid = function(elapsed) {
