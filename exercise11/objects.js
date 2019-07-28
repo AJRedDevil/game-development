@@ -121,6 +121,11 @@ Ship.prototype.draw = function(c, guide) {
   c.restore();
 };
 
+Ship.prototype.update = function(elapsed) {
+  this.push(this.angle, this.thruster_on * this.thruster_power, elapsed);
+  Mass.prototype.update.apply(this, arguments);
+};
+
 // Pacman
 /*
 function Pacman(x, y, radius, speed) {
