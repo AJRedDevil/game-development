@@ -196,3 +196,28 @@ Projectile.prototype.update = function(elapsed) {
   this.life -= elapsed / this.lifetime;
   Mass.prototype.update.apply(this, arguments);
 };
+
+// Indicator Class
+function Indicator(label, x, y, width, height) {
+  this.label = label + ': ';
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+}
+
+Indicator.prototype.draw = function(c, max, level) {
+  c.save();
+  c.strokeStyle = 'white';
+  c.fillStyle = 'white';
+  c.font = this.height + 'pt Arial';
+  const offset = c.measureText(this.label).width;
+  c.fillText(this.label, this.x, this.y + this.height - 1);
+  c.beginPath();
+  c.rect(offset + this.x, this.y, this.width, this.height);
+  c.stroke();
+  c.beginPath();
+  c.rect(offset + this.x, this.y, this.width * (max / level), this.height);
+  c.fill();
+  c.restore();
+};

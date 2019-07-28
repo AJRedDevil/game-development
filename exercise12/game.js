@@ -26,6 +26,7 @@ const AsteroidsGame = function(id) {
   this.projectiles = [];
   this.asteroids = [];
   this.asteroids.push(this.moving_asteroid());
+  this.health_indicator = new Indicator('heath', 5, 5, 100, 10);
   this.canvas.addEventListener('keydown', this.keyDown.bind(this), true);
   this.canvas.addEventListener('keyup', this.keyUp.bind(this), true);
   window.requestAnimationFrame(this.frame.bind(this));
@@ -131,4 +132,5 @@ AsteroidsGame.prototype.draw = function() {
   this.projectiles.forEach(p => {
     p.draw(this.c);
   }, this);
+  this.health_indicator.draw(this.c, this.ship.health, this.ship.max_health);
 };
