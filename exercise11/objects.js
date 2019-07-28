@@ -143,6 +143,14 @@ function Projectile(mass, lifetime, x, y, x_speed, y_speed, rotation_speed) {
 }
 extend(Projectile, Mass);
 
+Projectile.prototype.draw = function(c, guide) {
+  c.save();
+  c.translate(this.x, this.y);
+  c.rotate(this.angle);
+  draw_projectile(c, this.radius, this.life, guide);
+  c.restore();
+};
+
 Projectile.prototype.update = function(elapsed) {
   this.life -= elapsed / this.lifetime;
   Mass.prototype.update.apply(this, arguments);
