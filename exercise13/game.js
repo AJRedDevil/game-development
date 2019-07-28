@@ -61,6 +61,13 @@ AsteroidsGame.prototype.reset_game = function() {
   this.asteroids.push(this.moving_asteroid());
 };
 
+AsteroidsGame.prototype.level_up = function() {
+  this.level += 1;
+  for (let i = 0; i < this.level; i++) {
+    this.asteroids.push(this.moving_asteroid());
+  }
+};
+
 AsteroidsGame.prototype.moving_asteroid = function(elapsed) {
   const asteroid = this.new_asteroid();
   this.push_asteroid(asteroid, elapsed);
@@ -149,6 +156,9 @@ AsteroidsGame.prototype.frame = function(timestamp) {
 };
 
 AsteroidsGame.prototype.update = function(elapsed) {
+  if (this.asteroids.length == 0) {
+    this.level_up();
+  }
   this.ship.compromised = false;
   this.asteroids.forEach(asteroid => {
     asteroid.update(elapsed, this.c);
