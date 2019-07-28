@@ -47,7 +47,7 @@
 			projectiles.forEach((projectile, index, projectiles) => {
 				projectile.update(elapsed, context);
 				if (projectile.life <= 0) {
-					projectiles.splice(i, 1);
+					projectiles.splice(index, 1);
 				}
 			});
 			if (ship.trigger) {
