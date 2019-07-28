@@ -133,6 +133,16 @@ Ship.prototype.update = function(elapsed, c) {
   Mass.prototype.update.apply(this, arguments);
 };
 
+// Projectile Class
+function Projectile(mass, lifetime, x, y, x_speed, y_speed, rotation_speed) {
+  const density = 0.001; // low density means we can see very light projectiles
+  const radius = Math.sqrt(mass / density / Math.PI);
+  this.super(x, y, mass, radius, 0, x_speed, y_speed, rotation_speed);
+  this.lifetime = lifetime;
+  this.life = 1.0;
+}
+extend(Projectile, Mass);
+
 // Pacman
 /*
 function Pacman(x, y, radius, speed) {
