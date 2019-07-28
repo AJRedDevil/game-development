@@ -17,6 +17,7 @@ const AsteroidsGame = function(id) {
   this.mass_destroyed = 500;
   this.score = 0;
   this.game_over = false;
+  this.message = new Message(this.canvas.width / 2, this.canvas.height * 0.4);
 
   this.ship = new Ship(
     this.ship_mass,
