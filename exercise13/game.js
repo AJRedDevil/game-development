@@ -111,7 +111,11 @@ AsteroidsGame.prototype.key_handler = function(e, value) {
       break;
     case 'Space':
     case 32: // spacebar
-      this.ship.trigger = value;
+      if (this.game_over) {
+        this.reset_game();
+      } else {
+        this.ship.trigger = value;
+      }
       break;
     case 'KeyG':
     case 71: //g
