@@ -9,6 +9,8 @@ const AsteroidsGame = function(id) {
   this.asteroid_push = 500000; // max force to apply in one frame
 
   this.ship = new Ship(
+    this.ship_mass,
+    this.ship_radius,
     this.canvas.width / 2,
     this.canvas.height / 2,
     1000,
