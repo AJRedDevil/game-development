@@ -16,6 +16,7 @@ const AsteroidsGame = function(id) {
   this.asteroid_push = 500000; // max force to apply in one frame
   this.mass_destroyed = 500;
   this.score = 0;
+  this.game_over = false;
 
   this.ship = new Ship(
     this.ship_mass,
@@ -137,6 +138,10 @@ AsteroidsGame.prototype.update = function(elapsed) {
       this.ship.compromised = true;
     }
   }, this);
+  if (this.ship.health <= 0) {
+    this.game_over = true;
+    return;
+  }
   this.ship.update(elapsed, this.c);
   this.projectiles.forEach((p, i, projectiles) => {
     p.update(elapsed, this.c);
@@ -170,6 +175,10 @@ AsteroidsGame.prototype.draw = function(fps) {
     this.fps_indicator.draw(this.c, fps);
   }
   this.asteroids.forEach(asteroid => asteroid.draw(this.c, this.guide), this);
+  if (this.game_over) {
+    this.message.draw(this.c, 'GAME OVER', 'Press space to play again');
+    return;
+  }
   this.ship.draw(this.c, this.guide);
   this.projectiles.forEach(p => {
     p.draw(this.c);
