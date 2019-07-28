@@ -79,3 +79,12 @@ AsteroidsGame.prototype.key_handler = function(e, value) {
   }
   if (!nothingHandled) e.preventDefault();
 };
+
+AsteroidsGame.prototype.frame = function(timestamp) {
+  if (!this.previous) this.previous = timestamp;
+  const elapsed = timestamp - this.previous;
+  this.update(elapsed / 1000);
+  this.draw();
+  this.previous = timestamp;
+  window.requestAnimationFrame(this.frame.bind(this));
+};
