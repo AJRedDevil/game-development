@@ -64,7 +64,7 @@
 
 		function keyHandler(e, value) {
 			let nothingHandled = false;
-			switch (e.key || e.keyCode) {
+			switch (e.code || e.keyCode) {
 				case "ArrowUp":
 				case 38: // up arrow
 					ship.thruster_on = value;
