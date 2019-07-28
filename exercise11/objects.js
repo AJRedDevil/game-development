@@ -131,6 +131,11 @@ Ship.prototype.update = function(elapsed, c) {
     (this.right_thruster - this.left_thruster) * this.steering_power,
     elapsed
   );
+  // reload as necessary
+  this.loaded = this.time_until_reload === 0;
+  if (!this.loaded) {
+    this.time_until_reload -= Math.min(elapsed, this.time_until_reload);
+  }
   Mass.prototype.update.apply(this, arguments);
 };
 
