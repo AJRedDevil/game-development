@@ -117,7 +117,7 @@ Ship.prototype.draw = function(c, guide) {
   c.strokeStyle = 'white';
   c.lineWidth = 2;
   c.fillStyle = 'black';
-  draw_ship(c, this.radius, {guide});
+  draw_ship(c, this.radius, {guide, thruster: this.thruster_on});
   c.restore();
 };
 
