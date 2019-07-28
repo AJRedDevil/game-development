@@ -102,6 +102,17 @@ Asteroid.prototype.draw = function(ctx, guide) {
   ctx.restore();
 };
 
+Asteroid.prototype.child = function(mass) {
+  return new Asteroid(
+    mass,
+    this.x,
+    this.y,
+    this.x_speed,
+    this.y_speed,
+    this.rotation_speed
+  );
+};
+
 // Ship Class
 function Ship(mass = 10, radius = 20, x, y, power, weapon_power = 200) {
   this.super(mass, radius, x, y, 1.5 * Math.PI);
