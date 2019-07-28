@@ -110,6 +110,7 @@ function Ship(mass = 10, radius = 20, x, y, power, weapon_power = 200) {
   this.right_thruster = false;
   this.left_thruster = false;
   this.thruster_on = false;
+  this.retro_on = false;
   this.weapon_power = weapon_power;
   this.loaded = false;
   this.weapon_reload_time = 0.25; // second
@@ -126,7 +127,11 @@ Ship.prototype.draw = function(c, guide) {
 };
 
 Ship.prototype.update = function(elapsed, c) {
-  this.push(this.angle, this.thruster_on * this.thruster_power, elapsed);
+  this.push(
+    this.angle,
+    (this.thruster_on - this.retro_on) * this.thruster_power,
+    elapsed
+  );
   this.twist(
     (this.right_thruster - this.left_thruster) * this.steering_power,
     elapsed
