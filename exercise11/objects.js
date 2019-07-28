@@ -121,9 +121,6 @@ Ship.prototype.draw = function(c, guide) {
   c.save();
   c.translate(this.x, this.y);
   c.rotate(this.angle);
-  c.strokeStyle = 'white';
-  c.lineWidth = 2;
-  c.fillStyle = 'black';
   draw_ship(c, this.radius, {guide, thruster: this.thruster_on});
   c.restore();
 };
