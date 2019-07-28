@@ -111,6 +111,9 @@ function Ship(x, y, power, weapon_power = 200) {
   this.left_thruster = false;
   this.thruster_on = false;
   this.weapon_power = weapon_power;
+  this.loaded = false;
+  this.weapon_reload_time = 0.25; // second
+  this.time_until_reload = this.weapon_reload_time;
 }
 extend(Ship, Mass);
 
