@@ -41,3 +41,41 @@ AsteroidsGame.prototype.push_asteroid = function(asteroid, elapsed = 0.015) {
     elapsed
   );
 };
+
+AsteroidsGame.prototype.keyDown = function(e) {
+  this.key_handler(e, true);
+};
+AsteroidsGame.prototype.keyUp = function(e) {
+  this.key_handler(e, false);
+};
+AsteroidsGame.prototype.key_handler = function(e, value) {
+  let nothingHandled = false;
+  switch (e.code || e.keyCode) {
+    case 'ArrowLeft':
+    case 37: // left arrow
+      this.ship.left_thruster = value;
+      break;
+    case 'ArrowUp':
+    case 38: // up arrow
+      this.ship.thruster_on = value;
+      break;
+    case 'ArrowDown':
+    case 39: // down arrow
+      this.ship.retro_on = value;
+      break;
+    case 'ArrowRight':
+    case 40: // right arrow
+      this.ship.right_thruster = value;
+      break;
+    case 'Space':
+    case 32: // spacebar
+      this.ship.trigger = value;
+      break;
+    case 'KeyG':
+    case 71: //g
+      if (value) guide = !guide;
+    default:
+      nothingHandled = true;
+  }
+  if (!nothingHandled) e.preventDefault();
+};
