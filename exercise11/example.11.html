@@ -10,9 +10,12 @@
 
 <body>
 	<h1>Inheritance</h1>
-	<canvas id="asteroids" width="600" height="600"></canvas>
+	<canvas id="asteroids" width="600" height="600" tabindex="1"></canvas>
 	<script>
 		const context = document.getElementById("asteroids").getContext("2d");
+		context.canvas.addEventListener("keydown", e => keyHandler(e, true), true);
+		context.canvas.addEventListener("keyup", e => keyHandler(e, false), true);
+		context.canvas.focus();
 
 		const mass = new Mass(context.canvas.width / 2, context.canvas.height / 2, 10, 20);
 		const asteroids = [];
