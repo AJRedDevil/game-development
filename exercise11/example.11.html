@@ -30,6 +30,7 @@
 			asteroids.push(asteroid);
 		}
 		const ship = new Ship(context.canvas.width / 2, context.canvas.height / 2, 1000);
+		const projectiles = [];
 
 		function draw(ctx) {
 			draw_grid({ ctx });
