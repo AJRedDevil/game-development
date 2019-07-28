@@ -32,8 +32,7 @@ const AsteroidsGame = function(id) {
   this.score_indicator = new NumberIndicator(
     'score',
     this.canvas.width - 10,
-    this.canvas.height - 15,
-    {digits: 2}
+    5
   );
   this.fps_indicator = new NumberIndicator(
     'fps',
@@ -125,7 +124,7 @@ AsteroidsGame.prototype.frame = function(timestamp) {
   if (!this.previous) this.previous = timestamp;
   const elapsed = timestamp - this.previous;
   this.update(elapsed / 1000);
-  this.draw();
+  this.draw(1000 / elapsed);
   this.previous = timestamp;
   window.requestAnimationFrame(this.frame.bind(this));
 };
