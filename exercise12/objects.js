@@ -152,6 +152,9 @@ Ship.prototype.update = function(elapsed, c) {
   if (!this.loaded) {
     this.time_until_reload -= Math.min(elapsed, this.time_until_reload);
   }
+  if (this.compromised) {
+    this.health -= Math.min(elapsed, this.health);
+  }
   Mass.prototype.update.apply(this, arguments);
 };
 
