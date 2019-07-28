@@ -124,8 +124,12 @@ Ship.prototype.draw = function(c, guide) {
   c.restore();
 };
 
-Ship.prototype.update = function(elapsed) {
+Ship.prototype.update = function(elapsed, c) {
   this.push(this.angle, this.thruster_on * this.thruster_power, elapsed);
+  this.twist(
+    (this.right_thruster - this.left_thruster) * this.steering_power,
+    elapsed
+  );
   Mass.prototype.update.apply(this, arguments);
 };
 
